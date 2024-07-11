@@ -6,7 +6,7 @@ This is a simple Python script that validates whether a given input string is a 
 
 1. Clone the repository to your local machine:
 ```
-git clone https://github.com/your-username/json-parser.git
+git clone https://github.com/raghavgpt001/json-parser.git
 ```
 
 2. Navigate to the project directory:
