@@ -33,8 +33,5 @@ If the JSON is valid, it will display "Valid JSON". Otherwise, it will display "
 
 Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
 
-## License
-
-This project is licensed under the MIT License.
 
 Feel free to customize and enhance the `README.md` according to your project's specific needs.
