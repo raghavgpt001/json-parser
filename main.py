@@ -1,5 +1,5 @@
-import json
 import re
+
 def validateJSON(input):
     """
     Validates whether the given input is a valid JSON string.
@@ -19,53 +19,54 @@ def validateJSON(input):
         return True
     
     # split by comma
-    list = []
+    items = []
     stack_object = []
     inside_string = False
 
     item = ""
     for i in input:
-        if i=='"':
+        if i == '"':
             inside_string = not inside_string
             item += i
-        elif i=="," and len(stack_object)==0 and inside_string==False:
-            list.append(item)
-            item=""
-        elif i=="{" and inside_string==False:
+        elif i == "," and len(stack_object) == 0 and not inside_string:
+            items.append(item)
+            item = ""
+        elif i == "{" and not inside_string:
             stack_object.append(i)
             item += i
-        elif i=="}" and stack_object[-1]=="{" and inside_string==False:
+        elif i == "}" and stack_object[-1] == "{" and not inside_string:
             stack_object.pop()
             item += i
         else:
-            item+=i
-    list.append(item)
+            item += i
+    items.append(item)
 
-    print("list", list)
+    print("list", items)
 
-    for element in list:
+    for element in items:
         # split by colon
         kv = []
         inside_string = False
         item = ""
         for j in element:
-            if j=='"':
+            if j == '"':
                 inside_string = not inside_string
                 item += j
-            elif j==":" and inside_string==False:
+            elif j == ":" and not inside_string:
                 kv.append(item)
-                item = element[len(item)+1:]
+                item = element[len(item) + 1:]
                 break
             else:
-                item+=j
+                item += j
         kv.append(item)
 
-        if len(kv)==2:
+        if len(kv) == 2:
             key, value = kv[0], kv[1]
             # check validity of key
-            if not (key[0]=='"' and key[-1]=='"'):
+            if not (key[0] == '"' and key[-1] == '"'):
                 print("invalid key", key)
                 return False
+            # check validity of value
             if not checkValue(value):
                 print("invalid value", value)
                 return False
@@ -77,19 +78,19 @@ def validateJSON(input):
 
 def checkValue(value):
     # check string
-    if value[0]=='"' and value[-1]=='"':
+    if value[0] == '"' and value[-1] == '"':
         return True
-    if value=="true" or value=="false":
+    if value == "true" or value == "false":
         return True
-    if value=="null":
+    if value == "null":
         return True
     # check number
     pattern = r'^(?:-?(?:0|[1-9]\d*)(?:\.\d+)?|\.\d+)$'
     if re.match(pattern, value):
         return True
-    if value.isdigit() and value[0]!="0":
+    if value.isdigit() and value[0] != "0":
         return True
-    if value[0]=='[' and value[-1]==']':
+    if value[0] == "[" and value[-1] == "]":
         return True
     # check json object
     if validateJSON(value):
