@@ -1,23 +1,17 @@
-# json-parser
 # JSON Parser
 
-This is a simple Python script that validates whether a given input string is a valid JSON string. It checks the syntax and structure of the input string to determine its validity.
+This is a simple Python script that validates whether a given input string is a valid JSON string. It checks the syntax and structure of the input string to determine its validity. Please note that it currently does not parse JSON arrays.
 
 ## Installation
 
 1. Clone the repository to your local machine:
 ```
-git clone <repository_url>
+git clone https://github.com/your-username/json-parser.git
 ```
 
 2. Navigate to the project directory:
 ```
 cd json-parser
-```
-
-3. Install the required dependencies:
-```
-pip install -r requirements.txt
 ```
 
 ## Usage
